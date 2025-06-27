@@ -45,54 +45,57 @@ You type: "Onboard Alex as Software Engineer starting July 15th"
 
 Three agents, one goal: make onboarding easier.
 
+---
 
+## 🛠️ Getting it running
 
-## 🛠️ Setup Instructions
-
-### 1. Clone the repository
-
+### Step 1: Grab the code
 ```bash
 git clone https://github.com/yourusername/onboardiq.git
 cd onboardiq
-2. Create .env file in root
-env
-Copy
-Edit
+```
+
+### Step 2: Set up your secrets
+Create a `.env` file in the main folder:
+```env
 IBM_API_KEY=your_ibm_cloud_api_key_here
 PROJECT_ID=a9338afa-9c99-4030-80fd-a7b3ff20bbc7
 MODEL_ID=ibm/granite-3-3-8b-instruct
 ENDPOINT=https://us-south.ml.cloud.ibm.com
-📝 Don’t commit this .env file to GitHub.
+```
+*(Obviously don't commit this to GitHub — learned that the hard way)*
 
-3. Install dependencies
-bash
-Copy
-Edit
+### Step 3: Install the stuff
+```bash
 pip install -r requirements.txt
-4. Run the app
-bash
-Copy
-Edit
+```
+
+### Step 4: Fire it up
+```bash
 streamlit run streamlit_app.py
-🖥 Sample Usage
-Input:
+```
 
-Name: Jeevan George
+## 🖥 See it in action
 
-Instruction: Onboard as Sales Executive starting July 1st
+**What you type:**
+> Name: Jeevan George  
+> Instruction: Onboard as Sales Executive starting July 1st
 
-Output:
+**What you get:**
+- A warm welcome email (not the usual corporate template)
+- Detailed IT setup request 
+- Complete checklist with realistic deadlines
 
- Welcome email
+## 📦 What's under the hood
 
- IT team setup email
+| Thing | What I used |
+|-------|-------------|
+| Brain | IBM Granite 3.3 8B Instruct |
+| API | WatsonX (with auto token handling) |
+| Agents | Custom multi-agent setup |
+| Frontend | Streamlit (keeps it simple) |
+| Config | `.env` file |
 
- Personalized checklist with deadlines
+---
 
-📦 Tech Stack
-Layer	Tool/Framework
-LLM	ibm/granite-3-3-8b-instruct
-API Access	IBM WatsonX API + IAM token flow
-Agents	BeeAI-inspired architecture
-UI	Streamlit
-Secrets	.env + python-dotenv
+*Built during a weekend because manual onboarding is soul-crushing. If this helps even one HR person save an hour, it was worth it.*
