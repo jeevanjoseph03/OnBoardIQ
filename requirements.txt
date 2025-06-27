@@ -1,0 +1,4 @@
+beeai
+requests
+python-dotenv
+streamlit
