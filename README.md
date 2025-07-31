@@ -1,4 +1,4 @@
-#  OnboardIQ - Your Smart Onboarding Buddy
+# OnboardIQ - Your Smart Onboarding Buddy
 
 Ever spent hours crafting welcome emails and onboarding checklists for new hires? Yeah, me too. That's why I built **OnboardIQ** — an AI assistant that does all the tedious onboarding stuff so you don't have to.
 
