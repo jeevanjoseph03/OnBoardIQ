@@ -53,7 +53,7 @@ cd onboardiq
 Create a `.env` file in the project root directory with the following configuration:
 ```env
 IBM_API_KEY=your_ibm_cloud_api_key_here
-PROJECT_ID=a9338afa-9c99-4030-80fd-a7b3ff20bbc7
+PROJECT_ID=your_project_id_here
 MODEL_ID=ibm/granite-3-3-8b-instruct
 ENDPOINT=https://us-south.ml.cloud.ibm.com
 ```
