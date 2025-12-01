@@ -1,39 +1,37 @@
-# OnboardIQ - Your Smart Onboarding Buddy
+# OnboardIQ - AI-Powered Onboarding Assistant
 
-Ever spent hours crafting welcome emails and onboarding checklists for new hires? Yeah, me too. That's why I built **OnboardIQ** — an AI assistant that does all the tedious onboarding stuff so you don't have to.
+**OnboardIQ** is an intelligent multi-agent HR assistant that automates employee onboarding using IBM's Granite LLM and the watsonx.ai platform. The system converts a simple HR instruction into a comprehensive onboarding package including a personalized welcome email, IT setup request, and a structured checklist.
 
-Just tell it "Onboard Sarah as a Marketing Manager starting Monday" and boom — you get a personalized welcome email, IT setup request, and a complete checklist. All powered by IBM's Granite AI model.
-
-I'm entering this in the **IBM AI & Automation Hackathon (June 2025)** because, honestly, onboarding shouldn't be this painful in 2025. OnboardIQ - AI-Powered Onboarding Assistant
-
-**OnboardIQ** is an intelligent multi-agent HR assistant that automates employee onboarding using IBM’s Granite LLM and watsonx.ai platform. It converts a simple HR instruction into a personalized welcome email, IT setup request, and a structured checklist — instantly.
-
-Built for the **IBM AI & Automation Hackathon - June 2025**, it showcases the power of **agentic AI** combined with enterprise-ready LLMs.
+Built for the **IBM AI & Automation Hackathon - June 2025**, this project demonstrates the capabilities of agentic AI combined with enterprise-ready large language models.
 
 ---
 
-## 🚀 What it actually does
+## Features
 
-- Uses IBM's `granite-3-3-8b-instruct` model (because it's surprisingly good)
-- Three AI agents work together: one plans, one writes emails, one makes checklists
-- Clean Streamlit interface (no fancy CSS needed)
-- Generates everything you need:
-  - A proper welcome email that doesn't sound robotic
-  - IT setup email with actual details
-  - Role-specific checklist with realistic deadlines
-- Simple `.env` setup — no wrestling with IBM tokens
-- Actually works (tested it myself multiple times)
+OnboardIQ provides the following capabilities:
+
+- **Automated Content Generation**: Leverages IBM's `granite-3-3-8b-instruct` model to generate contextually appropriate onboarding materials
+- **Multi-Agent Architecture**: Employs three specialized AI agents working in coordination:
+  - PlannerAgent: Extracts and structures key information from user instructions
+  - EmailAgent: Generates personalized welcome and IT setup emails
+  - ChecklistAgent: Creates role-specific task lists with appropriate deadlines
+- **User-Friendly Interface**: Built with Streamlit for straightforward interaction
+- **Comprehensive Output**: Generates all essential onboarding documents:
+  - Personalized welcome email
+  - IT setup request with relevant details
+  - Role-specific checklist with realistic timelines
+- **Simple Configuration**: Environment-based configuration for easy deployment
 
 ---
 
-## 🤖 How it works
+## Architecture
 
-Here's the magic behind the scenes:
+The system employs a multi-agent workflow to process onboarding requests:
 
 ```
-You type: "Onboard Alex as Software Engineer starting July 15th"
+User Input: "Onboard Alex as Software Engineer starting July 15th"
                               ↓
-                    PlannerAgent figures out:
+                    PlannerAgent extracts:
                     • Role: Software Engineer  
                     • Start date: July 15th
                               ↓
@@ -43,59 +41,104 @@ You type: "Onboard Alex as Software Engineer starting July 15th"
    (Welcome email)        (IT setup)         (Task list)
 ```
 
-Three agents, one goal: make onboarding easier.
+Each agent is specialized for its task, ensuring high-quality, contextually appropriate output.
 
 ---
 
-## 🛠️ Getting it running
+## Installation
 
-### Step 1: Grab the code
+### Prerequisites
+- Python 3.7 or higher
+- IBM Cloud account with watsonx.ai access
+- IBM API key and project ID
+
+### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/yourusername/onboardiq.git
 cd onboardiq
 ```
 
-### Step 2: Set up your secrets
-Create a `.env` file in the main folder:
+### Step 2: Configure Environment Variables
+Create a `.env` file in the project root directory with the following configuration:
+
 ```env
 IBM_API_KEY=your_ibm_cloud_api_key_here
-PROJECT_ID=a9338afa-9c99-4030-80fd-a7b3ff20bbc7
+PROJECT_ID=your_watsonx_project_id
 MODEL_ID=ibm/granite-3-3-8b-instruct
 ENDPOINT=https://us-south.ml.cloud.ibm.com
 ```
-*(Obviously don't commit this to GitHub — learned that the hard way)*
 
-### Step 3: Install the stuff
+**Important**: Do not commit the `.env` file to version control. It contains sensitive credentials.
+
+### Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Fire it up
+### Step 4: Run the Application
 ```bash
 streamlit run streamlit_app.py
 ```
 
-## 🖥 See it in action
-
-**What you type:**
-> Name: Jeevan George  
-> Instruction: Onboard as Sales Executive starting July 1st
-
-**What you get:**
-- A warm welcome email (not the usual corporate template)
-- Detailed IT setup request 
-- Complete checklist with realistic deadlines
-
-## 📦 What's under the hood
-
-| Thing | What I used |
-|-------|-------------|
-| Brain | IBM Granite 3.3 8B Instruct |
-| API | WatsonX (with auto token handling) |
-| Agents | Custom multi-agent setup |
-| Frontend | Streamlit (keeps it simple) |
-| Config | `.env` file |
+The application will be accessible at `http://localhost:8501` in your web browser.
 
 ---
 
-*Built during a weekend because manual onboarding is soul-crushing. If this helps even one HR person save an hour, it was worth it.*
+## Usage
+
+### Input Format
+
+The application requires two inputs:
+
+1. **Employee Name**: The full name of the new hire
+2. **Onboarding Instruction**: A natural language instruction describing the role and start date
+
+### Example
+
+**Input:**
+- Name: `Jeevan George`
+- Instruction: `Onboard as Sales Executive starting July 1st`
+
+**Output:**
+
+The system generates three artifacts:
+
+1. **Welcome Email**: A personalized welcome message appropriate to the role
+2. **IT Setup Request**: Detailed requirements for IT provisioning
+3. **Onboarding Checklist**: A structured task list with deadlines
+
+---
+
+## Technology Stack
+
+| Component | Technology |
+|-----------|------------|
+| Language Model | IBM Granite 3.3 8B Instruct |
+| AI Platform | IBM watsonx.ai |
+| Agent Framework | Custom multi-agent implementation |
+| Web Framework | Streamlit |
+| Configuration | Python-dotenv |
+| HTTP Client | Requests |
+
+---
+
+## Project Structure
+
+```
+OnboardIQ/
+├── agents/               # AI agent implementations
+│   ├── planner_agent.py
+│   ├── email_agent.py
+│   └── checklist_agent.py
+├── core/                 # Core functionality
+│   └── watsonx_client.py
+├── streamlit_app.py      # Main application entry point
+├── requirements.txt      # Python dependencies
+└── README.md             # Project documentation
+```
+
+---
+
+## License
+
+This project was developed for the IBM AI & Automation Hackathon - June 2025.
