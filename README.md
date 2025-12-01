@@ -68,6 +68,8 @@ MODEL_ID=ibm/granite-3-3-8b-instruct
 ENDPOINT=https://us-south.ml.cloud.ibm.com
 ```
 
+**Note**: Replace `your_ibm_cloud_api_key_here` and `your_watsonx_project_id` with your actual IBM Cloud API key and watsonx.ai project ID. You can obtain these from your IBM Cloud account.
+
 **Important**: Do not commit the `.env` file to version control. It contains sensitive credentials.
 
 ### Step 3: Install Dependencies
